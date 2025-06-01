@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Swastik Pvt. Ltd.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37',
+                        secondary: '#0D0D0D',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'swastik-bg': "url('assets/images/swastik-bg.png')"
+                    }
+                },
+            },
+        };
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-secondary text-white font-sans relative overflow-x-hidden">
+
+    <!-- Background Watermark -->
+    <div class="absolute inset-0 opacity-5 blur-sm bg-center bg-no-repeat bg-contain pointer-events-none"
+        style="background-image: url('assets/images/swastik-bg.png'); z-index: 0; background-size: 100%; background-position-x: 75px; background-position-y: -200px;">
+    </div>
+
+    <!-- Main Content -->
+    <section class="max-w-6xl mx-auto px-6 py-20 relative z-10 space-y-20">
+        <!-- About Intro -->
+        <div class="text-center">
+            <h2 class="text-4xl font-bold text-primary">About Swastik Pvt. Ltd.</h2>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                We’re a creative agency focused on crafting digital excellence that drives results and elevates your
+                brand.
+            </p>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="grid md:grid-cols-2 gap-10 text-gray-300">
+            <div class="bg-white/5 p-8 rounded-2xl shadow-lg backdrop-blur-md hover:scale-105">
+                <h3 class="text-2xl font-semibold text-primary mb-4 ">Our Mission</h3>
+                <p>
+                    To deliver high-quality, innovative, and reliable web solutions that empower businesses to succeed
+                    online.
+                </p>
+            </div>
+            <div class="bg-white/5 p-8 rounded-2xl shadow-lg backdrop-blur-md hover:scale-105">
+                <h3 class="text-2xl font-semibold text-primary mb-4 ">Our Vision</h3>
+                <p>
+                    To be a global leader in digital services, known for creativity, transparency, and results-driven
+                    work.
+                </p>
+            </div>
+        </div>
+
+        <!-- What We Do -->
+        <div class="mb-12 bg-white/5 p-5 rounded-2xl shadow-lg backdrop-blur-md text-gray-300 text-center hover:scale-105">
+            <h3 class="text-2xl font-semibold text-primary mb-4">What We Do</h3>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                ✔Custom website development & redesigns<br>
+                ✔SEO optimization for visibility and ranking<br>
+                ✔Lightning-fast hosting & maintenance<br>
+                ✔Responsive, mobile-first design<br>
+                ✔UI/UX for better conversions and user experience<br>
+            </ul>
+        </div>
+
+        <!-- Why Choose Us -->
+        <div class="bg-white/5 p-5 rounded-2xl shadow-lg backdrop-blur-md text-gray-300 text-center hover:scale-105">
+            <h3 class="text-2xl font-semibold text-primary mb-6">Why Choose Us?</h3>
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div>
+                    <h4 class="text-white font-bold">✔ Expertise</h4>
+                    <p class="text-sm mt-1 text-white/80">Over 10+ years of industry experience.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold">✔ Custom Solutions</h4>
+                    <p class="text-sm mt-1 text-white/80">Tailored services for every business size.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold">✔ Quality Support</h4>
+                    <p class="text-sm mt-1 text-white/80">24/7 customer support and guidance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Our Team (Optional Placeholder) -->
+        <div class="text-center text-gray-300">
+            <h3 class="text-2xl font-semibold text-primary mb-4">Meet Our Team</h3>
+            <div class="flex flex-col items-center space-y-4 mt-10">
+                <img src="assets/images/boss.jpg" alt="Founder Photo"
+                    class="w-40 h-40 rounded-full border-4 border-primary shadow-lg hover:scale-105">
+                <h4 class="text-xl font-semibold text-white">Kuldeep Sonawane</h4>
+                <p class="text-sm text-primary font-medium">Founder, CEO & Lead Developer</p>
+                <p class="text-sm text-gray-400 max-w-md text-center">
+                    Passionate about building digital experiences that work. I believe in combining design, performance,
+                    and strategy for business growth.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Inject Header/Footer -->
+    <script>
+        fetch("header.html")
+            .then(res => res.text())
+            .then(data => {
+                document.body.insertAdjacentHTML("afterbegin", data);
+            });
+
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => {
+                document.body.insertAdjacentHTML("beforeend", data);
+            });
+    </script>
+
+</body>
+
+</html>
