@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Swastik Pvt. Ltd.</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37',
+                        secondary: '#1F2937',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'swastik-bg': "url('assets/images/swastik-bg.png')"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-secondary text-white font-sans relative overflow-x-hidden">
+
+    <!-- Background Logo -->
+    <div class="absolute inset-0 opacity-5 blur-sm bg-center bg-no-repeat bg-contain pointer-events-none"
+        style="background-image: url('assets/images/swastik-bg.png'); background-size: 100%; background-position-x:75px; background-position-y:-200px; z-index: 0;">
+    </div>
+
+    <!-- Contact Section -->
+    <section class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-primary">Contact Us</h2>
+            <p class="text-gray-400 mt-2">We’d love to hear from you. Drop us a message anytime.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <form id="contactForm" class="space-y-6 bg-white/5 p-8 rounded-2xl backdrop-blur-md shadow-lg">
+                <div>
+                    <label class="block text-white mb-2">Your Name</label>
+                    <input type="text" name="name" placeholder="John Doe"
+                        class="w-full p-3 rounded bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+                <div>
+                    <label class="block text-white mb-2">Your Email</label>
+                    <input type="email" name="email" placeholder="you@example.com"
+                        class="w-full p-3 rounded bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+                <div>
+                    <label class="block text-white mb-2">Message</label>
+                    <textarea rows="5" name="message" placeholder="Tell us more..."
+                        class="w-full p-3 rounded bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                <button type="submit" id="submitBtn"
+                    class="w-full bg-gradient-to-r from-yellow-500 to-yellow-300 text-black py-3 rounded-full font-semibold hover:opacity-90 transition">
+                    <span id="btnText">Send Message</span>
+                </button>
+            </form>
+
+            <!-- Contact Info -->
+            <div class="space-y-6 text-gray-300">
+                <div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Reach Us</h3>
+                    <p>Email: <a href="mailto:info@swastiksolutions.com"
+                            class="text-white hover:underline">info@swastiksolutions.com</a></p>
+                    <p>Phone: <a href="tel:+918551041138" class="text-white hover:underline">+91 8551041138</a></p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Our Address</h3>
+                    <p>Swastik Pvt. Ltd.<br>Shirpur, MH 18, India</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Follow Us</h3>
+                    <div class="flex space-x-4 mt-2">
+                        <a href="#" class="hover:text-yellow-400">🌐 Website</a>
+                        <a href="#" class="hover:text-yellow-400">📸 Instagram</a>
+                        <a href="#" class="hover:text-yellow-400">💼 LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Header and Footer Includes -->
+    <script>
+        fetch("header.html")
+            .then(res => res.text())
+            .then(data => document.body.insertAdjacentHTML("afterbegin", data));
+
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => document.body.insertAdjacentHTML("beforeend", data));
+
+        const form = document.getElementById("contactForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const btnText = document.getElementById("btnText");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            // Show loading
+            submitBtn.disabled = true;
+            btnText.innerHTML = `<svg class="inline mr-2 w-5 h-5 text-black animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5a50 50 0 11-50-50 50.5 50.5 0 0150 50z" fill="#E5E7EB" />
+                <path d="M93.9 39.1A40 40 0 1060 93.9" stroke="#000" stroke-width="10" stroke-linecap="round" />
+            </svg> Sending...`;
+
+            fetch("https://script.google.com/macros/s/AKfycbxcQM-gccv-qmP0nhTszJqXFSIHPkou3U7cmz78YDe-woOfZNn-5oxcnX_zDLfYq8dI/exec", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert("Message sent successfully!");
+                    form.reset();
+                })
+                .catch(error => {
+                    alert("Error sending message.");
+                    console.error(error);
+                })
+                .finally(() => {
+                    // Reset loading state
+                    submitBtn.disabled = false;
+                    btnText.innerText = "Send Message";
+                });
+        });
+    </script>
+
+</body>
+
+</html>
